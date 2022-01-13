@@ -13,7 +13,7 @@ function getMinsMaxes(lines) {
         count[i] = [0, 0];
       }
 
-      let val = +line[i];
+      let val = Number(line[i]);
       count[i][val]++;
     }
   }

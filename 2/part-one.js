@@ -2,8 +2,8 @@ const { input } = require("./input");
 
 let horizontal = 0;
 let depth = 0;
-for (let i = 0; i < input.length; i++) {
-  const { command, num } = input[i];
+for (const item of input) {
+  const { command, num } = item;
   if (command === "forward") {
     horizontal += num;
   }

@@ -1,18 +1,19 @@
 const { input } = require("./input");
 
 let sampleData = [];
-// 初始化一个1000*1000的二维数组
 let resArray = new Array(1000).fill(0).map(() => new Array(1000).fill(0));
 
 for (let i = 0; i < input.length; i++) {
   const val = input[i];
   const x = val[0].split(",");
   const y = val[1].split(",");
+  const [x1, x2, y1, y2] = [
+    parseInt(x[0]),
+    parseInt(y[0]),
+    parseInt(x[1]),
+    parseInt(y[1]),
+  ];
 
-  const x1 = parseInt(x[0]);
-  const x2 = parseInt(y[0]);
-  const y1 = parseInt(x[1]);
-  const y2 = parseInt(y[1]);
   sampleData[i] = [];
   // check if the line is horizontal or vertical lines
   if (x1 !== x2 && y1 !== y2) {

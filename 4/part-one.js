@@ -3,7 +3,6 @@ const { input } = require("./input");
 let boards = [];
 let randomNumList = input[0].split(",");
 
-// traverse each board
 input.forEach((val, i) => {
   let board = [];
   if (i > 0) {
@@ -25,9 +24,13 @@ input.forEach((val, i) => {
 let unmarkedSum = 0;
 let lastNum = 0;
 
-while (randomNumList.length > 0) {
-  const choosenNum = randomNumList.shift();
-  for (let b = 0; b < boards.length; b++) {
+getUnmarkedSum();
+
+const res = unmarkedSum * lastNum;
+console.log(res);
+
+function getUnmarkedSum() {
+  for (const choosenNum of randomNumList) {
     const cBoard = boards[b];
     unmarkedSum = 0;
 
@@ -48,48 +51,36 @@ while (randomNumList.length > 0) {
           }
         }
       }
-
-      break;
+      return;
     }
   }
-  if (unmarkedSum > 0) break;
 }
-
-const res = unmarkedSum * lastNum;
-console.log(res);
 
 function isWinner(board) {
   let isWinner = false;
-  // check row
-  for (let i = 0; i < board.length; i++) {
-    const row = board[i];
+  for (const row of board) {
     for (let j = 0; j < row.length; j++) {
       if (!row[j].marked) {
         break;
       }
-      if (j === row.length - 1 && row[j].marked) {
+      if (j === row.length - 1) {
         isWinner = true;
         break;
       }
     }
-    if (isWinner) break;
+    if (isWinner) return isWinner;
   }
 
-  // check column
-  if (!isWinner) {
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board.length; j++) {
-        const item = board[j][i];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      const item = board[j][i];
 
-        if (!item.marked) break;
-        if (j === board.length - 1 && item.marked) {
-          isWinner = true;
-          break;
-        }
+      if (!item.marked) break;
+      if (j === board.length - 1) {
+        isWinner = true;
+        break;
       }
-      if (isWinner) break;
     }
+    if (isWinner) return isWinner;
   }
-
-  return isWinner;
 }

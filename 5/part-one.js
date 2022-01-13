@@ -1,32 +1,36 @@
 const { input } = require("./input");
 
 let sampleData = [];
-// 初始化一个1000*1000的二维数组
 let resArray = new Array(1000).fill(0).map(() => new Array(1000).fill(0));
 
 for (let i = 0; i < input.length; i++) {
   const val = input[i];
   const x = val[0].split(",");
   const y = val[1].split(",");
+  const [x1, x2, y1, y2] = [
+    parseInt(x[0]),
+    parseInt(y[0]),
+    parseInt(x[1]),
+    parseInt(y[1]),
+  ];
   sampleData[i] = [];
-  if (parseInt(x[0]) !== parseInt(y[0]) && parseInt(x[1]) !== parseInt(y[1])) {
+  if (x1 !== x2 && y1 !== y2) {
     continue;
   }
 
   sampleData[i][0] = {
-    x1: parseInt(x[0]),
-    y1: parseInt(x[1]),
+    x1,
+    y1,
   };
   sampleData[i][1] = {
-    x2: parseInt(y[0]),
-    y2: parseInt(y[1]),
+    x2,
+    y2,
   };
 }
 
 const validInput = sampleData.filter((item) => item.length > 0);
 
-for (let i = 0; i < validInput.length; i++) {
-  const line = validInput[i];
+for (const line of validInput) {
   const [x1, x2, y1, y2] = [line[0].x1, line[1].x2, line[0].y1, line[1].y2];
 
   if (x1 === x2) {

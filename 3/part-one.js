@@ -7,20 +7,18 @@ const { input } = require("./input");
  */
 
 let count = [];
-for (let i = 0; i < input.length; i++) {
-  const line = input[i];
-  for (let m = 0; m < line.length; m++) {
-    const val = line[m];
-    if (!count[m]) {
-      count[m] = [0, 0];
+for (const line of input) {
+  for (let column = 0; column < line.length; column++) {
+    const val = line[column];
+    if (!count[column]) {
+      count[column] = [0, 0];
     }
-    count[m][val]++;
+    count[column][val]++;
   }
 }
 
 let gamma = "";
 let epsilon = "";
-// 遍历 count
 for (let i = 0; i < count.length; i++) {
   const zeroNum = count[i][0];
   const oneNum = count[i][1];
