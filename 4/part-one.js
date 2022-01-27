@@ -83,4 +83,6 @@ function isWinner(board) {
     }
     if (isWinner) return isWinner;
   }
+
+  return isWinner;
 }
