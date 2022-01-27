@@ -1,22 +1,22 @@
 const { input } = require("./input");
 
-const getNewFishPopulation = (fish) => {
+const getNewLanternfish = (fish) => {
   let newFishCount = 0;
-  const newFishPopulation = fish.map((f) => {
+  const newLanternfish = fish.map((f) => {
     if (f === 0) {
       newFishCount++;
       return 6;
     }
     return f - 1;
   });
-  newFishPopulation.push(...Array(newFishCount).fill(8));
-  return newFishPopulation;
+  newLanternfish.push(...Array(newFishCount).fill(8));
+  return newLanternfish;
 };
 
 const solve_one = (data) => {
   let fish = data;
   for (let day = 1; day <= 80; day++) {
-    fish = getNewFishPopulation(fish);
+    fish = getNewLanternfish(fish);
   }
   return fish.length;
 };
@@ -40,4 +40,4 @@ const solve_two = (data) => {
 }
 
 
-console.log(solve_two(input));
+console.log(solve_one(input));
