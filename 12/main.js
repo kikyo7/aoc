@@ -22,6 +22,7 @@ const getPath = (from, visited, twice) => {
   }
 
   if(!isBig(from)) visited[from] = true
+  
 
   let paths = 0
   for(const cave of caves[from]){
