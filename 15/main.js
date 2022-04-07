@@ -37,7 +37,9 @@ function findShortestPath(input){
 
 function expand(input){
   let expandedArr = []
-  let firstBlock = []
+  let curBlock = []
+  let newBlock = []
+  
   // 先横向膨胀
   for(let row of input){
     let currentRow = [...row]
@@ -47,18 +49,21 @@ function expand(input){
       currentRow = [...currentRow, ...next]
     }
     expandedArr.push(currentRow)
-    firstBlock.push(currentRow)
+    curBlock.push(currentRow)
   }
 
   // 再纵向膨胀
-  for(let row of firstBlock){
-    let nextRow = [...row]
-    for(let i=0; i<4; i++){
+  for(let i=0; i<4; i++){
+    for(let row of curBlock){
+      nextRow = [...row]
       nextRow = nextRow.map((c) => (c + 1 > 9 ? 1 : c + 1));
-      expandedArr.push(nextRow)
+      expandedArr.push(nextRow);
+      newBlock.push(nextRow)
     }
-  }
+    curBlock = newBlock
+    newBlock = []
 
+  }
   return expandedArr  
 }
 
